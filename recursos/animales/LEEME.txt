@@ -1,0 +1,31 @@
+IMÁGENES DE LOS ANIMALES (PNG)
+==============================
+
+Coloca aquí una imagen .png por animal, con estos nombres exactos
+(todo en minúsculas, sin tildes ni eñes):
+
+  arana.png             -> ARAÑA
+  ballena.png           -> BALLENA
+  burro.png             -> BURRO
+  caballo.png           -> CABALLO
+  cabra.png             -> CABRA
+  camello.png           -> CAMELLO
+  cangrejo.png          -> CANGREJO
+  canguro.png           -> CANGURO
+  caracol.png           -> CARACOL
+  cerdo.png             -> CERDO
+  cocodrilo.png         -> COCODRILO
+  conejo.png            -> CONEJO
+  cucaracha.png         -> CUCARACHA
+  culebra.png           -> CULEBRA
+  elefante.png          -> ELEFANTE
+  gallina.png           -> GALLINA
+  gallo.png             -> GALLO
+  gato.png              -> GATO
+  gorila.png            -> GORILA
+  gusano.png            -> GUSANO
+  hipopotamo.png        -> HIPOPOTAMO
+  hormiga.png           -> HORMIGA
+
+No hace falta tocar el código: al guardar el archivo, el juego lo muestra solo.
+Puedes borrar este archivo de texto cuando quieras.
