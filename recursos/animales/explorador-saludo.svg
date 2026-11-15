@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" role="img" aria-labelledby="title desc">
+<title id="title">Explorador saludando</title>
+<desc id="desc">Pequeño explorador sonriente con sombrero de safari, binoculares, mochila y una mano levantada saludando.</desc>
+<defs>
+  <linearGradient id="piel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8d3ac"/><stop offset="1" stop-color="#eab58a"/></linearGradient>
+  <linearGradient id="camisa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8d577"/><stop offset="1" stop-color="#e2a940"/></linearGradient>
+  <linearGradient id="sombrero" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e7b565"/><stop offset="1" stop-color="#c58a3c"/></linearGradient>
+  <linearGradient id="mochila" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9733a"/><stop offset="1" stop-color="#b9532a"/></linearGradient>
+</defs>
+
+<!-- sombra -->
+<ellipse cx="120" cy="268" rx="62" ry="8" fill="#06220f" opacity=".3"/>
+
+<!-- mochila (detrás) -->
+<g stroke="#5a3a22" stroke-width="3.5" stroke-linejoin="round">
+  <rect x="60" y="140" width="48" height="12" rx="6" fill="#7f9a3f"/>
+  <rect x="62" y="148" width="46" height="66" rx="18" fill="url(#mochila)"/>
+  <rect x="68" y="180" width="32" height="26" rx="9" fill="#e48a45"/>
+</g>
+<path d="M72 188 H96" stroke="#5a3a22" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="84" cy="188" r="3" fill="#ffe27a" stroke="#5a3a22" stroke-width="1.5"/>
+
+<!-- piernas y botas -->
+<g stroke="#5a3a22" stroke-width="3.5" stroke-linejoin="round">
+  <rect x="98" y="218" width="20" height="30" rx="9" fill="url(#piel)"/>
+  <rect x="122" y="218" width="20" height="30" rx="9" fill="url(#piel)"/>
+  <rect x="97" y="236" width="22" height="10" rx="4" fill="#fffbea"/>
+  <rect x="121" y="236" width="22" height="10" rx="4" fill="#fffbea"/>
+  <path d="M92 252 Q92 244 102 244 L118 244 Q122 256 118 264 L96 264 Q88 262 92 252Z" fill="#7a4a26"/>
+  <path d="M148 252 Q148 244 138 244 L122 244 Q118 256 122 264 L144 264 Q152 262 148 252Z" fill="#7a4a26"/>
+</g>
+<path d="M95 258 H116 M124 258 H145" stroke="#a8693a" stroke-width="3" stroke-linecap="round"/>
+
+<!-- pantalón corto -->
+<path d="M92 204 Q120 214 148 204 L150 232 Q136 238 121 230 Q106 238 90 232Z" fill="#7f9a3f" stroke="#5a3a22" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M121 214 V230" stroke="#5a3a22" stroke-width="2.5" stroke-linecap="round"/>
+
+<!-- brazo izquierdo (abajo) -->
+<path d="M92 160 Q84 178 81 194" fill="none" stroke="#5a3a22" stroke-width="19" stroke-linecap="round"/>
+<path d="M92 160 Q84 178 81 194" fill="none" stroke="url(#piel)" stroke-width="13" stroke-linecap="round"/>
+<circle cx="80" cy="199" r="10" fill="url(#piel)" stroke="#5a3a22" stroke-width="3.5"/>
+
+<!-- torso -->
+<path d="M92 140 Q120 130 148 140 L153 208 Q120 220 87 208Z" fill="url(#camisa)" stroke="#5a3a22" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M89 204 Q120 216 151 204" fill="none" stroke="#7a4a26" stroke-width="6" stroke-linecap="round"/>
+<rect x="114" y="205" width="12" height="9" rx="2" fill="#ffe27a" stroke="#5a3a22" stroke-width="2"/>
+<!-- insignia de estrella -->
+<path d="M136 184 l2.6 5.4 5.9.8 -4.3 4.1 1 5.8 -5.2-2.8 -5.2 2.8 1-5.8 -4.3-4.1 5.9-.8z" fill="#e4572e" stroke="#5a3a22" stroke-width="1.6" stroke-linejoin="round"/>
+
+<!-- pañuelo -->
+<path d="M102 138 Q120 150 138 138 L131 154 Q120 162 109 154Z" fill="#e4572e" stroke="#5a3a22" stroke-width="3" stroke-linejoin="round"/>
+
+<!-- binoculares -->
+<path d="M106 146 Q104 166 110 174 M134 146 Q136 166 130 174" fill="none" stroke="#4a3020" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#1e3a2a" stroke-width="3" stroke-linejoin="round">
+  <rect x="104" y="170" width="15" height="20" rx="5" fill="#35604a"/>
+  <rect x="121" y="170" width="15" height="20" rx="5" fill="#35604a"/>
+  <rect x="117" y="175" width="6" height="8" fill="#284a39"/>
+</g>
+<circle cx="111.5" cy="186" r="4.6" fill="#a9e0f0" stroke="#1e3a2a" stroke-width="1.8"/>
+<circle cx="128.5" cy="186" r="4.6" fill="#a9e0f0" stroke="#1e3a2a" stroke-width="1.8"/>
+<circle cx="110" cy="184.5" r="1.4" fill="#fff"/><circle cx="127" cy="184.5" r="1.4" fill="#fff"/>
+
+<!-- brazo derecho (saludando) -->
+<path d="M146 152 Q168 146 180 114" fill="none" stroke="#5a3a22" stroke-width="19" stroke-linecap="round"/>
+<path d="M146 152 Q168 146 180 114" fill="none" stroke="url(#piel)" stroke-width="13" stroke-linecap="round"/>
+<path d="M142 152 L156 148" fill="none" stroke="#5a3a22" stroke-width="25" stroke-linecap="round"/>
+<path d="M142 152 L156 148" fill="none" stroke="#f3c75f" stroke-width="19" stroke-linecap="round"/>
+<g fill="url(#piel)" stroke="#5a3a22" stroke-width="3.5" stroke-linejoin="round">
+  <circle cx="184" cy="102" r="13"/>
+  <ellipse cx="170" cy="104" rx="5" ry="8" transform="rotate(-25 170 104)"/>
+  <ellipse cx="177" cy="88" rx="4.4" ry="8" transform="rotate(-12 177 88)"/>
+  <ellipse cx="186" cy="85" rx="4.4" ry="8.4"/>
+  <ellipse cx="195" cy="88" rx="4.4" ry="8" transform="rotate(14 195 88)"/>
+</g>
+<circle cx="184" cy="104" r="9" fill="url(#piel)"/>
+<!-- rayitas de saludo -->
+<g fill="none" stroke="#ffe27a" stroke-width="3.5" stroke-linecap="round">
+  <path d="M206 84 Q216 98 207 114"/><path d="M215 78 Q229 98 216 120"/>
+</g>
+
+<!-- cabeza -->
+<circle cx="72" cy="98" r="10" fill="url(#piel)" stroke="#5a3a22" stroke-width="3.5"/>
+<circle cx="168" cy="98" r="10" fill="url(#piel)" stroke="#5a3a22" stroke-width="3.5"/>
+<circle cx="72" cy="99" r="4.5" fill="#e59a78"/><circle cx="168" cy="99" r="4.5" fill="#e59a78"/>
+<circle cx="120" cy="92" r="49" fill="url(#piel)" stroke="#5a3a22" stroke-width="3.5"/>
+
+<!-- flequillo -->
+<path d="M72 78 Q74 96 84 100 Q86 86 98 80 Q110 96 124 80 Q138 96 150 80 Q158 90 156 100 Q166 96 168 78 L168 64 L72 64Z" fill="#7a4a2a" stroke="#5a3a22" stroke-width="3" stroke-linejoin="round"/>
+
+<!-- sombrero -->
+<ellipse cx="120" cy="66" rx="68" ry="15" fill="url(#sombrero)" stroke="#5a3a22" stroke-width="3.5"/>
+<path d="M60 68 Q120 84 180 68" fill="none" stroke="#a8702a" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+<path d="M87 66 Q84 24 120 22 Q156 24 153 66 Q120 76 87 66Z" fill="url(#sombrero)" stroke="#5a3a22" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M88 55 Q120 66 152 55 L153 66 Q120 77 87 66Z" fill="#d9472f" stroke="#5a3a22" stroke-width="3" stroke-linejoin="round"/>
+<path d="M104 30 Q120 24 136 30" fill="none" stroke="#fff3c2" stroke-width="4" stroke-linecap="round" opacity=".7"/>
+<path d="M142 58 Q160 34 168 40 Q164 56 148 64Z" fill="#4aa84f" stroke="#5a3a22" stroke-width="3" stroke-linejoin="round"/>
+<path d="M146 60 Q158 46 164 44" fill="none" stroke="#1f6b3a" stroke-width="2" stroke-linecap="round"/>
+
+<!-- rostro -->
+<ellipse cx="101" cy="102" rx="8.5" ry="10.5" fill="#2b1a12"/>
+<ellipse cx="139" cy="102" rx="8.5" ry="10.5" fill="#2b1a12"/>
+<circle cx="104" cy="98" r="3.8" fill="#fff"/><circle cx="142" cy="98" r="3.8" fill="#fff"/>
+<circle cx="98" cy="106" r="1.9" fill="#fff"/><circle cx="136" cy="106" r="1.9" fill="#fff"/>
+<ellipse cx="86" cy="118" rx="9.5" ry="6" fill="#ff7f8a" opacity=".55"/>
+<ellipse cx="154" cy="118" rx="9.5" ry="6" fill="#ff7f8a" opacity=".55"/>
+<g fill="#c98860"><circle cx="92" cy="111" r="1.4"/><circle cx="97" cy="114" r="1.4"/><circle cx="143" cy="114" r="1.4"/><circle cx="148" cy="111" r="1.4"/></g>
+<path d="M117.5 114 Q120 117.5 122.5 114" fill="none" stroke="#b5714b" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M106 122 Q120 140 134 122 Q120 127 106 122Z" fill="#8a2f33" stroke="#5a2020" stroke-width="3" stroke-linejoin="round"/>
+<path d="M113 130 Q120 124.5 127 130 Q120 136.5 113 130Z" fill="#f2848c"/>
+
+<!-- destellos -->
+<g fill="#ffe27a">
+  <path d="M34 62 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z"/>
+  <path d="M206 36 l2.4 6.4 6.4 2.4 -6.4 2.4 -2.4 6.4 -2.4 -6.4 -6.4 -2.4 6.4 -2.4z"/>
+  <path d="M28 150 l1.8 4.6 4.6 1.8 -4.6 1.8 -1.8 4.6 -1.8 -4.6 -4.6 -1.8 4.6 -1.8z"/>
+</g>
+</svg>
