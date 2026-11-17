@@ -52,17 +52,26 @@
       .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
   }
 
-  const VOCABULARIO = LISTA_OFICIAL.map(a => {
-    const base = nombreArchivo(a.nombre);
-    return Object.freeze({
-      nombre: a.nombre,
-      articulo: a.articulo,
-      soloDiccionario: !!a.soloDiccionario,
-      archivo: base,
-      rutaVideo: RUTA_SENAS + 'sena-' + base + '.mp4',
-      rutaImagen: RUTA_ANIMALES + base + '.png'
-    });
+  
+const VOCABULARIO = LISTA_OFICIAL.map(a => {
+  const base = nombreArchivo(a.nombre);
+
+  const nombreVideo = base
+    .split('-')
+    .map(p => p.charAt(0).toUpperCase() + p.slice(1))
+    .join('-') + '.mov';
+
+  return Object.freeze({
+    nombre: a.nombre,
+    articulo: a.articulo,
+    soloDiccionario: !!a.soloDiccionario,
+    archivo: base,
+    archivoVideo: nombreVideo,
+    rutaVideo: RUTA_SENAS + nombreVideo,
+    rutaImagen: RUTA_ANIMALES + base + '.png'
   });
+});
+
 
   /* El juego usa solo los animales; el diccionario usa todo el vocabulario */
   const ANIMALES = VOCABULARIO.filter(a => !a.soloDiccionario);
@@ -276,7 +285,7 @@
     pausarVideo();
     $('pendienteVideo').hidden = true;
     botonPlay.disabled = true;
-    $('archivoVideo').textContent = 'sena-' + animal.archivo + '.mp4';
+   $('archivoVideo').textContent = animal.archivoVideo;
     video.src = animal.rutaVideo;
     video.load();
     actualizarBotonPlay();
@@ -420,7 +429,7 @@
 
     const v = rama.querySelector('video');
     const pend = rama.querySelector('.pendiente');
-    pend.querySelector('code').textContent = 'sena-' + animal.archivo + '.mp4';
+    pend.querySelector('code').textContent = animal.archivoVideo;
     v.addEventListener('loadeddata', () => {
       pend.hidden = true;
       const p = v.play();
