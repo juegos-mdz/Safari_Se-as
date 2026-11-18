@@ -9,7 +9,7 @@
      1. LISTA OFICIAL DE ANIMALES
      Es la ÚNICA fuente de animales del proyecto.
      Para cada animal, el sistema deduce solo los nombres de sus archivos:
-        recursos/senas/<Nombre>.gif
+        recursos/senas/sena-<nombre>.gif
         recursos/animales/<nombre>.png
      (en minúsculas, sin tildes ni eñes, con guiones en vez de espacios)
      --------------------------------------------------- */
@@ -55,7 +55,7 @@
  
 const VOCABULARIO = LISTA_OFICIAL.map(a => {
   const base = nombreArchivo(a.nombre);
-  const nombreGif = base.charAt(0).toUpperCase() + base.slice(1) + '.gif';
+  const nombreGif = 'sena-' + base + '.gif';
 
   return Object.freeze({
     nombre: a.nombre,
