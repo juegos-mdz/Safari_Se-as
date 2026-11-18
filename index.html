@@ -141,12 +141,20 @@
               <div class="giro-interior">
                 <div class="cara cara-frente" id="caraFrente" aria-label="Imagen del animal. Toca para ver la seña"></div>
                 <div class="cara cara-dorso marco-video" id="marcoVideo">
-                  <video id="videoSena" playsinline loop muted preload="auto" aria-label="Video de la seña del animal"></video>
-                  <div class="pendiente pendiente-video" id="pendienteVideo" hidden>
-                    <span class="pendiente-icono" aria-hidden="true">🐾</span>
-                    <span class="pendiente-texto">Video pendiente</span>
-                    <code id="archivoVideo"></code>
-                  </div>
+
+                    <img
+                        id="gifSena"
+                        alt="Seña del animal"
+                        loading="eager"
+                        decoding="async"
+                    >
+                
+                    <div class="pendiente pendiente-video" id="pendienteVideo" hidden>
+                        <span class="pendiente-icono" aria-hidden="true">🐾</span>
+                        <span class="pendiente-texto">GIF pendiente</span>
+                        <code id="archivoVideo"></code>
+                    </div>
+                
                 </div>
               </div>
             </div>
