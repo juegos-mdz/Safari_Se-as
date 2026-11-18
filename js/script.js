@@ -9,7 +9,7 @@
      1. LISTA OFICIAL DE ANIMALES
      Es la ÚNICA fuente de animales del proyecto.
      Para cada animal, el sistema deduce solo los nombres de sus archivos:
-        recursos/senas/sena-<nombre>.mp4
+        recursos/senas/<Nombre>.gif
         recursos/animales/<nombre>.png
      (en minúsculas, sin tildes ni eñes, con guiones en vez de espacios)
      --------------------------------------------------- */
@@ -55,17 +55,15 @@
  
 const VOCABULARIO = LISTA_OFICIAL.map(a => {
   const base = nombreArchivo(a.nombre);
-
-  const nombreVideo =
-    base.charAt(0).toUpperCase() + base.slice(1) + '.mp4';
+  const nombreGif = base.charAt(0).toUpperCase() + base.slice(1) + '.gif';
 
   return Object.freeze({
     nombre: a.nombre,
     articulo: a.articulo,
     soloDiccionario: !!a.soloDiccionario,
     archivo: base,
-    archivoVideo: nombreVideo,
-    rutaVideo: RUTA_SENAS + nombreVideo,
+    archivoGif: nombreGif,
+    rutaGif: RUTA_SENAS + nombreGif,
     rutaImagen: RUTA_ANIMALES + base + '.png'
   });
 });
@@ -187,7 +185,7 @@ const VOCABULARIO = LISTA_OFICIAL.map(a => {
   }
 
   /* ---------------------------------------------------
-     6. RECURSOS PENDIENTES (imágenes y videos)
+     6. RECURSOS PENDIENTES (imágenes y GIF)
      Los archivos se buscan siempre por su nombre. Cuando existan en la
      carpeta aparecen solos; si no, se muestra un marcador discreto.
      --------------------------------------------------- */
@@ -219,74 +217,40 @@ const VOCABULARIO = LISTA_OFICIAL.map(a => {
   }
 
   /* ---------------------------------------------------
-     7. FASE 1 · APRENDIZAJE
+     7. FASE 1 · APRENDIZAJE CON GIF
      --------------------------------------------------- */
-  const video = $('videoSena');
-  const botonPlay = $('botonPlay');
+  const gifSena = $('gifSena');
   const tarjetaGiro = $('tarjetaGiro');
-  let girada = false;   // false = se ve el animal · true = se ve la seña (video)
+  let girada = false;
 
-  function actualizarBotonPlay() {
-    const reproduciendo = !video.paused && !video.ended;
-    $('iconoPlay').textContent = reproduciendo ? '⏸' : '▶';
-    $('textoPlay').textContent = reproduciendo ? 'Pausar' : 'Reproducir';
-    botonPlay.setAttribute('aria-label', reproduciendo ? 'Pausar video' : 'Reproducir video');
-  }
-  function pausarVideo() { if (!video.paused) video.pause(); }
+  // Se conserva esta función porque la navegación general la utiliza.
+  // Los GIF no se pueden pausar desde JavaScript como un video.
+  function pausarVideo() {}
 
-  /* Gira la tarjeta: primero el animal (frente) y luego el video de la seña (dorso) */
   function girarTarjeta(valor) {
     girada = typeof valor === 'boolean' ? valor : !girada;
     tarjetaGiro.classList.toggle('girada', girada);
     $('caraFrente').setAttribute('aria-hidden', girada ? 'true' : 'false');
     $('marcoVideo').setAttribute('aria-hidden', girada ? 'false' : 'true');
     $('textoGirar').textContent = girada ? 'Ver el animal' : 'Ver la seña';
-    if (girada) {
-      if (video.getAttribute('src') && video.readyState >= 2) {
-        const p = video.play();
-        if (p && p.catch) p.catch(() => {});
-      }
-    } else {
-      pausarVideo();
-    }
-    actualizarBotonPlay();
   }
 
-  video.addEventListener('loadeddata', () => {
+  gifSena.addEventListener('load', () => {
     $('pendienteVideo').hidden = true;
-    botonPlay.disabled = false;
-    if (girada) {                           // solo arranca si la tarjeta ya muestra la seña
-      const intento = video.play();         // en silencio y en bucle
-      if (intento && intento.catch) intento.catch(() => actualizarBotonPlay());
-    }
+    gifSena.hidden = false;
   });
-  video.addEventListener('error', () => {
-    if (!video.getAttribute('src')) return;
+
+  gifSena.addEventListener('error', () => {
+    if (!gifSena.getAttribute('src')) return;
+    gifSena.hidden = true;
     $('pendienteVideo').hidden = false;
-    botonPlay.disabled = true;
-    actualizarBotonPlay();
-  });
-  video.addEventListener('play', actualizarBotonPlay);
-  video.addEventListener('pause', actualizarBotonPlay);
-
-  botonPlay.addEventListener('click', () => {
-    if (!girada) { girarTarjeta(true); return; }
-    if (video.paused) {
-      const p = video.play();
-      if (p && p.catch) p.catch(() => {});
-    } else {
-      video.pause();
-    }
   });
 
-  function cargarVideo(animal) {
-    pausarVideo();
+  function cargarGif(animal) {
     $('pendienteVideo').hidden = true;
-    botonPlay.disabled = true;
-    $('archivoVideo').textContent = 'sena-' + animal.archivo + '.mp4';
-    video.src = animal.rutaVideo;
-    video.load();
-    actualizarBotonPlay();
+    gifSena.hidden = true;
+    $('archivoVideo').textContent = animal.archivoGif;
+    gifSena.src = animal.rutaGif;
   }
 
   function pintarChips() {
@@ -322,12 +286,13 @@ const VOCABULARIO = LISTA_OFICIAL.map(a => {
       const idx = Number(chip.dataset.indice);
       chip.classList.toggle('actual', idx === i);
       chip.classList.toggle('visto', estado.vistos.has(idx));
-      if (idx === i) chip.setAttribute('aria-current', 'true'); else chip.removeAttribute('aria-current');
+      if (idx === i) chip.setAttribute('aria-current', 'true');
+      else chip.removeAttribute('aria-current');
     });
 
-    $('caraFrente').replaceChildren(crearMarcoImagen(animal));   // frente: imagen del animal
-    girarTarjeta(false);                                         // siempre empieza viendo el animal
-    cargarVideo(animal);                                         // dorso: video de la seña
+    $('caraFrente').replaceChildren(crearMarcoImagen(animal));
+    girarTarjeta(false);
+    cargarGif(animal);
   }
 
   function entrarAprendizaje() {
@@ -402,7 +367,7 @@ const VOCABULARIO = LISTA_OFICIAL.map(a => {
   }
 
   function pausarVideosJuego() {
-    document.querySelectorAll('#opciones video').forEach(v => { if (!v.paused) v.pause(); });
+    // Los GIF se reproducen automáticamente; no requieren play() ni pause().
   }
 
   function crearRama(animal, k) {
@@ -412,9 +377,9 @@ const VOCABULARIO = LISTA_OFICIAL.map(a => {
     rama.innerHTML =
       '<div class="ventana">' +
         '<div class="claro">' +
-          '<video playsinline loop muted preload="none" aria-label="Video de la seña de la opción ' + num + '"></video>' +
+          '<img class="gif-rama" hidden loading="lazy" decoding="async" alt="Seña del animal de la opción ' + num + '">' +
           '<div class="pendiente" hidden><span class="pendiente-icono" aria-hidden="true">🐾</span>' +
-          '<span class="pendiente-texto">Video pendiente</span><code></code></div>' +
+          '<span class="pendiente-texto">GIF pendiente</span><code></code></div>' +
         '</div>' +
         '<button type="button" class="matorral" aria-expanded="false" aria-label="Opción ' + num + ': tocar el arbusto para ver su seña">' +
           '<span class="hojas hojas-izq">' + hojasSVG(k * 2 + 3, 46) + '</span>' +
@@ -425,17 +390,19 @@ const VOCABULARIO = LISTA_OFICIAL.map(a => {
       '</div>' +
       '<button type="button" class="boton boton-escoger" aria-label="Escoger la opción ' + num + '">Escoger</button>';
 
-    const v = rama.querySelector('video');
+    const gif = rama.querySelector('.gif-rama');
     const pend = rama.querySelector('.pendiente');
-    pend.querySelector('code').textContent = 'sena-' + animal.archivo + '.mp4';
-    v.addEventListener('loadeddata', () => {
+    pend.querySelector('code').textContent = animal.archivoGif;
+
+    gif.addEventListener('load', () => {
+      gif.hidden = false;
       pend.hidden = true;
-      const p = v.play();
-      if (p && p.catch) p.catch(() => {});
     });
-    v.addEventListener('error', () => { if (v.getAttribute('src')) pend.hidden = false; });
-    v.addEventListener('click', () => {
-      if (v.paused) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } else { v.pause(); }
+    gif.addEventListener('error', () => {
+      if (gif.getAttribute('src')) {
+        gif.hidden = true;
+        pend.hidden = false;
+      }
     });
 
     rama.querySelector('.matorral').addEventListener('click', () => {
@@ -452,9 +419,8 @@ const VOCABULARIO = LISTA_OFICIAL.map(a => {
     const m = rama.querySelector('.matorral');
     m.setAttribute('aria-expanded', 'true');
     m.disabled = true;
-    const v = rama.querySelector('video');
-    v.src = animal.rutaVideo;
-    v.load();
+    const gif = rama.querySelector('.gif-rama');
+    gif.src = animal.rutaGif;
   }
 
   /* ---------------------------------------------------
