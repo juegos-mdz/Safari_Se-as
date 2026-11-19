@@ -412,7 +412,7 @@ const VOCABULARIO = LISTA_OFICIAL.map(a => {
     rama.innerHTML =
       '<div class="ventana">' +
         '<div class="claro">' +
-          '<img class="gif-rama" hidden loading="lazy" decoding="async" alt="Seña del animal de la opción ' + num + '">' +
+          '<img class="gif-rama" hidden decoding="async" alt="Seña del animal de la opción ' + num + '">' +
           '<div class="pendiente" hidden><span class="pendiente-icono" aria-hidden="true">🐾</span>' +
           '<span class="pendiente-texto">GIF pendiente</span><code></code></div>' +
         '</div>' +
@@ -641,6 +641,9 @@ const VOCABULARIO = LISTA_OFICIAL.map(a => {
      12. ARRANQUE
      --------------------------------------------------- */
   validarLista();
-  pintarChips();
-  $('escenaFondo').innerHTML = hojasSVG(11, 150);
+   pintarChips();
+   $('escenaFondo').innerHTML = hojasSVG(11, 150);
+   
+   // Comenzar a preparar el primer GIF desde el inicio
+   precargarGif(VOCABULARIO[0]);
 })();
