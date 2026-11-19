@@ -77,6 +77,33 @@ const VOCABULARIO = LISTA_OFICIAL.map(a => {
      --------------------------------------------------- */
   const $ = id => document.getElementById(id);
 
+
+  // ---------------------------------------------------
+  // PRECARGA DE GIF EN SEGUNDO PLANO
+  // ---------------------------------------------------
+  const precargasGif = new Map();
+
+  function precargarGif(animal) {
+    if (!animal || precargasGif.has(animal.rutaGif)) return;
+
+    const imagen = new Image();
+    imagen.decoding = 'async';
+
+    const carga = new Promise(resolve => {
+      imagen.onload = () => resolve(true);
+      imagen.onerror = () => {
+        precargasGif.delete(animal.rutaGif);
+        resolve(false);
+      };
+    });
+
+    precargasGif.set(animal.rutaGif, { imagen, carga });
+    imagen.src = animal.rutaGif;
+
+    return carga;
+  }
+
+   
   /* Mezcla Fisher-Yates: todos los elementos tienen la misma probabilidad */
   function mezclar(lista) {
     const copia = lista.slice();
@@ -293,6 +320,14 @@ const VOCABULARIO = LISTA_OFICIAL.map(a => {
     $('caraFrente').replaceChildren(crearMarcoImagen(animal));
     girarTarjeta(false);
     cargarGif(animal);
+   // Adelantar la descarga de los próximos animales
+   if (i + 1 < VOCABULARIO.length) {
+     precargarGif(VOCABULARIO[i + 1]);
+   }
+   
+   if (i + 2 < VOCABULARIO.length) {
+     precargarGif(VOCABULARIO[i + 2]);
+   }
   }
 
   function entrarAprendizaje() {
@@ -392,6 +427,8 @@ const VOCABULARIO = LISTA_OFICIAL.map(a => {
 
     const gif = rama.querySelector('.gif-rama');
     const pend = rama.querySelector('.pendiente');
+     // Descargar la seña desde que se prepara la ronda
+   precargarGif(animal);
     pend.querySelector('code').textContent = animal.archivoGif;
 
     gif.addEventListener('load', () => {
